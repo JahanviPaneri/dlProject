@@ -72,5 +72,5 @@ with torch.no_grad():
 print(f"Validation Accuracy: {100 * correct / total:.2f}%")
 
 # 6. Save the Model
-torch.save(model.state_dict(), 'model/saved_model.pth')
-print("✅ Model saved at 'model/saved_model.pth'")
+torch.save(model.state_dict(), 'saved_model.pth')
+print("✅ Model saved at 'saved_model.pth'")

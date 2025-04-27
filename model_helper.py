@@ -29,9 +29,14 @@ def predict(image_path):
 
     global trained_model
     if trained_model is None:
+        checkpoint = torch.load("model/saved_model.pth", map_location=torch.device('cpu'))
+        new_checkpoint = {}
+        for key in checkpoint.keys():
+            new_checkpoint["model." + key] = checkpoint[key]
         trained_model = CarClassifierResNet18()
-        trained_model.load_state_dict(torch.load("model/model/saved_model.pth", map_location=torch.device('cpu')))
+        trained_model.load_state_dict(new_checkpoint)
         trained_model.eval()
+        
 
     with torch.no_grad():
         output = trained_model(image_tensor)
