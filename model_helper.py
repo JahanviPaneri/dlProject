@@ -6,7 +6,7 @@ from PIL import Image
 trained_model = None
 class_names = ['No Damage', 'Minor Damage', 'Major Damage', 'Severe Damage']
 
-# Load the pre-trained ResNet18 model (same as training)
+
 class CarClassifierResNet18(nn.Module):
     def __init__(self, num_classes=4):
         super().__init__()
@@ -30,7 +30,7 @@ def predict(image_path):
     global trained_model
     if trained_model is None:
         trained_model = CarClassifierResNet18()
-        trained_model.load_state_dict(torch.load("model/model/saved_model.pth", map_location=torch.device('cpu')))
+        trained_model.load_state_dict(torch.load("model/model/saved_model.pth", map_location=torch.device('cpu'),weights_only=True), strict=False)
         trained_model.eval()
 
     with torch.no_grad():

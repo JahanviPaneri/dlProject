@@ -1,5 +1,7 @@
 import streamlit as st
 from model_helper import predict
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 st.title("Vehicle Damage Detection")
 

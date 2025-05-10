@@ -6,6 +6,8 @@ import torchvision.transforms as transforms
 from torchvision import datasets, models
 from torch.utils.data import DataLoader
 import os
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 # Create model folder if doesn't exist
 os.makedirs('model', exist_ok=True)
@@ -22,8 +24,8 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
-train_dataset = datasets.ImageFolder(root=r"C:\Users\DELL\OneDrive\Desktop\dl-car-damage-detection\model\data\train", transform=transform)
-val_dataset = datasets.ImageFolder(root=r"C:\Users\DELL\OneDrive\Desktop\dl-car-damage-detection\model\data\val", transform=transform)
+train_dataset = datasets.ImageFolder(root=r"/Users/saanvilakhanpal/Desktop/Car-Damage-Detection/Deep-Learning-Project/model/data/train", transform=transform)
+val_dataset = datasets.ImageFolder(root=r"/Users/saanvilakhanpal/Desktop/Car-Damage-Detection/Deep-Learning-Project/model/data/val", transform=transform)
 
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
